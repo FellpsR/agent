@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "OkJJVTU5apqaujeurJqe1yHZpPeFMb7/sf74TXwP08w=",
+  "Source": "Agent",
+  "BasePath": "_content/Agent",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
