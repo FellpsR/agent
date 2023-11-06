@@ -25,87 +25,30 @@ public class FileManagerController : ControllerBase
             {
                 try
                 {
-                    if (System.IO.File.Exists(path))
+                    // Se o caminho é um arquivo, ele é aberto aqui.
+                    Process.Start(new ProcessStartInfo
                     {
-                        var fileInfo = new FileInfo(path);
-
-                        if (fileInfo.IsReadOnly)
-                        {
-                            return BadRequest(new { message = "Sem permissão de escrita no arquivo." });
-                        }
-
-                        try
-                        {
-                            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-                            {
-                                // Faz a verificação se o usuário tem permissão para Ler o arquivo
-                            }
-                        }
-                        catch (UnauthorizedAccessException)
-                        {
-                            return BadRequest(new { message = "Usuário sem permissão." });
-                        }
-
-                        using (var process = new Process())
-                        {
-                            process.StartInfo.FileName = path;
-                            process.StartInfo.UseShellExecute = true;
-                            process.Start();
-                        }
-                    }
-                    else
-                    {
-                        var directoryInfo = new DirectoryInfo(path);
-
-                        if ((directoryInfo.Attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
-                        {
-                            return BadRequest(new { message = "Sem permissão de escrita no diretório." });
-                        }
-
-                        try
-                        {
-                            using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
-                            {
-                                // Faz a verificação se o usuário tem permissão para Ler o diretório
-                            }
-                        }
-                        catch (UnauthorizedAccessException)
-                        {
-                            return BadRequest(new { message = "Usuário sem permissão." });
-                        }
-
-                        Process.Start("explorer.exe", path);
-                    }
+                        FileName = path,
+                        UseShellExecute = true
+                    });
                     return Ok(new { message = "path aberto com sucesso." });
                 }
-                catch (FileNotFoundException ex)
+                catch (SystemException ex)
                 {
-                    var msg = "Arquivo não encontrado. " + ex.Message;
+                    var msg = "Erro ao abrir arquivo. "+ex.Message;
                     System.Console.WriteLine(msg);
-                    return NotFound(new { message = msg });
-                }
-                catch (UnauthorizedAccessException ex)
-                {
-                    var msg = "Acesso não autorizado. " + ex.Message;
-                    System.Console.WriteLine(msg);
-                    return BadRequest(new { message = msg });
-                }
-                catch (Exception ex)
-                {
-                    var msg = "Erro ao abrir arquivo. " + ex.Message;
-                    System.Console.WriteLine(msg);
-                    return NotFound(new { message = msg });
+                    return BadRequest(new {message = msg});
                 }
             }
             else
             {
+                // Se o caminho não existe, retorna um não encontrado.
                 return NotFound();
             }
         }
         catch (Exception ex)
         {
-            System.Console.WriteLine(ex);
-            return StatusCode(500, "Erro interno do servidor " + ex.Message);
+            // Lidar com exceções, se necessário.
+            return StatusCode(500, "Teste de msg de retorno! "+ex.Message);
         }
-    }
-}
+    }}

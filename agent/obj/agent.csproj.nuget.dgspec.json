@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Felps\\Desktop\\Lógica\\Agent\\agent\\agent.csproj": {}
+    "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Felps\\Desktop\\Lógica\\Agent\\agent\\agent.csproj": {
+    "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Felps\\Desktop\\Lógica\\Agent\\agent\\agent.csproj",
+        "projectUniqueName": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj",
         "projectName": "agent",
-        "projectPath": "C:\\Users\\Felps\\Desktop\\Lógica\\Agent\\agent\\agent.csproj",
-        "packagesPath": "C:\\Users\\Felps\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Felps\\Desktop\\Lógica\\Agent\\agent\\obj\\",
+        "projectPath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj",
+        "packagesPath": "C:\\Users\\felipe.oliveira\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Felps\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\felipe.oliveira\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
