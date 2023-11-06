@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj": {}
+    "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\Agent.csproj": {}
   },
   "projects": {
-    "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj": {
+    "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\Agent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj",
-        "projectName": "agent",
-        "projectPath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj",
+        "projectUniqueName": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\Agent.csproj",
+        "projectName": "Agent",
+        "projectPath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\Agent.csproj",
         "packagesPath": "C:\\Users\\felipe.oliveira\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\obj\\",
         "projectStyle": "PackageReference",

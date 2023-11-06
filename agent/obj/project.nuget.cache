@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9YV6MCcGwJIUuM1m3Jpmm4boZjX8dfptUbiNQLWjF+irNksmFuQmgZOmN+bsr4PUfSQRarODEdyMjcmx9mdR6g==",
+  "dgSpecHash": "M0IvzpQEEoBsEOg3jUswBV/HwbotT/wwS+9se/J1GGcEy+8gg9meesqeISJ4V81v1eR1DVE5VjZcnaW6k7HuQQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\agent.csproj",
+  "projectFilePath": "C:\\Users\\felipe.oliveira\\Documents\\Felps\\agent\\agent\\Agent.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felipe.oliveira\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.13\\microsoft.aspnetcore.openapi.7.0.13.nupkg.sha512",
     "C:\\Users\\felipe.oliveira\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
