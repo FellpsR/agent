@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Security.AccessControl;
 using FileManager.Model;
 
+
 [Route("link")]
 [ApiController]
 public class FileManagerController : ControllerBase
@@ -22,15 +23,25 @@ public class FileManagerController : ControllerBase
             if (System.IO.File.Exists(path) || Directory.Exists(path))
             {
                 try
-                {
+                {   
+                    //Tenta abrir o arquivo ou diretório.
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = path,
+                        UseShellExecute = true
+                    });
+
                     // Verifica as permissões do diretório ou arquivo.
                     var accessControl = System.IO.File.Exists(path) ? (FileSystemSecurity)new FileSecurity(path, AccessControlSections.Access) : new DirectorySecurity(path, AccessControlSections.Access);
                     var rules = accessControl.GetAccessRules(true, true, typeof(System.Security.Principal.NTAccount));
                     Console.WriteLine("passou1");
 
-
                     // Verifica se o usuário atual tem permissão para acessar o diretório ou arquivo.
-                    var currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                    string currentUser = "";
+                    if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+                    {
+                        currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                    }
                     var hasPermission = false;
                     Console.WriteLine("passou2");
                     foreach (FileSystemAccessRule rule in rules)
@@ -50,22 +61,12 @@ public class FileManagerController : ControllerBase
                         }
                     }
 
-                    // Se o caminho é um arquivo, ele é aberto aqui.
-                    Process.Start(new ProcessStartInfo
-                    {
-                        FileName = path,
-                        UseShellExecute = true
-                    });
+                    // Se o caminho é um arquivo/diretório válido, return msg ao console.
                     Console.WriteLine();
                     return Ok(new { message = "path aberto com sucesso." });
                 }
                 catch (SystemException ex)
                 {
-                     Process.Start(new ProcessStartInfo
-                    {
-                        FileName = path,
-                        UseShellExecute = true
-                    });
                     Console.WriteLine("passou5");
                     var msg = "Erro ao abrir arquivo. " + ex.Message;
                     return BadRequest(new { message = msg });
@@ -82,7 +83,8 @@ public class FileManagerController : ControllerBase
         {
             // Lidar com exceções, se necessário.
             Console.WriteLine("Erro Interno de Servidor");
-            return StatusCode(500, "Erro Interno de Servidor " + ex.Message);
+            var msg = "Erro interno de Servidor." + ex.Message;
+            return StatusCode(500, new { message = msg });
         }
     }
 }
