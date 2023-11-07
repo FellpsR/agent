@@ -38,15 +38,16 @@ public class FileManagerController : ControllerBase
                         if (!(rule.IdentityReference.Value.Equals(currentUser, StringComparison.CurrentCultureIgnoreCase) || rule.AccessControlType != AccessControlType.Allow))
                         {
                             hasPermission = true;
-                            break;
                             Console.WriteLine("passou3");
+                            break;
                         }
-                    }
+                    
 
-                    if (!hasPermission)
-                    {
-                        Console.WriteLine("passou4");
-                        return Forbid();
+                        if (!hasPermission)
+                        {
+                            Console.WriteLine("passou4");
+                            return Forbid();
+                        }
                     }
 
                     // Se o caminho é um arquivo, ele é aberto aqui.
@@ -60,23 +61,28 @@ public class FileManagerController : ControllerBase
                 }
                 catch (SystemException ex)
                 {
+                     Process.Start(new ProcessStartInfo
+                    {
+                        FileName = path,
+                        UseShellExecute = true
+                    });
+                    Console.WriteLine("passou5");
                     var msg = "Erro ao abrir arquivo. " + ex.Message;
-                    Console.WriteLine(msg);
                     return BadRequest(new { message = msg });
                 }
             }
             else
             {
                 // Se o caminho não existe, retorna um não encontrado.
-                Console.WriteLine("passou5");
-                return NotFound();
+                Console.WriteLine("Path não encontrado.");
+                return StatusCode(404, "Path não encontrado.");
             }
         }
         catch (Exception ex)
         {
             // Lidar com exceções, se necessário.
-            Console.WriteLine("passou6");
-            return StatusCode(500, "Teste de msg de retorno! " + ex.Message);
+            Console.WriteLine("Erro Interno de Servidor");
+            return StatusCode(500, "Erro Interno de Servidor " + ex.Message);
         }
     }
 }
