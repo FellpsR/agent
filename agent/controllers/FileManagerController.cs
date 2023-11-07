@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using FileManager.Model;
 
@@ -29,21 +26,26 @@ public class FileManagerController : ControllerBase
                     // Verifica as permissões do diretório ou arquivo.
                     var accessControl = System.IO.File.Exists(path) ? (FileSystemSecurity)new FileSecurity(path, AccessControlSections.Access) : new DirectorySecurity(path, AccessControlSections.Access);
                     var rules = accessControl.GetAccessRules(true, true, typeof(System.Security.Principal.NTAccount));
+                    Console.WriteLine("passou1");
+
 
                     // Verifica se o usuário atual tem permissão para acessar o diretório ou arquivo.
                     var currentUser = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
                     var hasPermission = false;
+                    Console.WriteLine("passou2");
                     foreach (FileSystemAccessRule rule in rules)
                     {
-                        if (rule.IdentityReference.Value.Equals(currentUser, StringComparison.CurrentCultureIgnoreCase) && rule.AccessControlType == AccessControlType.Allow)
+                        if (!(rule.IdentityReference.Value.Equals(currentUser, StringComparison.CurrentCultureIgnoreCase) || rule.AccessControlType != AccessControlType.Allow))
                         {
                             hasPermission = true;
                             break;
+                            Console.WriteLine("passou3");
                         }
                     }
 
                     if (!hasPermission)
                     {
+                        Console.WriteLine("passou4");
                         return Forbid();
                     }
 
@@ -53,6 +55,7 @@ public class FileManagerController : ControllerBase
                         FileName = path,
                         UseShellExecute = true
                     });
+                    Console.WriteLine();
                     return Ok(new { message = "path aberto com sucesso." });
                 }
                 catch (SystemException ex)
@@ -65,12 +68,14 @@ public class FileManagerController : ControllerBase
             else
             {
                 // Se o caminho não existe, retorna um não encontrado.
+                Console.WriteLine("passou5");
                 return NotFound();
             }
         }
         catch (Exception ex)
         {
             // Lidar com exceções, se necessário.
+            Console.WriteLine("passou6");
             return StatusCode(500, "Teste de msg de retorno! " + ex.Message);
         }
     }

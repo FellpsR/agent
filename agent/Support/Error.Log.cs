@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-
 public class ErrorLogger
 {
     private static readonly string logFilePath = "./Support/error_log.txt";
